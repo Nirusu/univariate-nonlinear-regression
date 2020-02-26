@@ -10,7 +10,7 @@ public class GradientDescent {
         // Data and Graph setup.
         // -------------------------------------------------
         List<List<Double>> data = Data.dataFrom(DATA_FILE);
-        Plot plt = new Plot("Height vs Finger Length", "Height", "Finger Length", data);
+        Plot plt = new Plot("x", "y", "Univariate Non-Linear Regression", data);
         sleep(500);
 
         // -------------------------------------------------
@@ -26,7 +26,7 @@ public class GradientDescent {
         // Learning rate
         double alpha = 0.0001;
 
-        // Main Gradient Descent Function for Linear Regression
+        // Main Gradient Descent Function for Non-Linear Regression
         for(int i = 0; i < epochs; i++) {
 
             double cost = 0;
