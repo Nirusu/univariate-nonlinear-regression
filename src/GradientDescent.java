@@ -2,7 +2,7 @@ import java.util.List;
 
 public class GradientDescent {
 
-    public static final String DATA_FILE = "data/MacdonellDF.csv";
+    public static final String DATA_FILE = "data/ml-assignment-q1.csv";
 
     public static void main(String[] args) {
 
@@ -19,11 +19,12 @@ public class GradientDescent {
         final int epochs = 100;  // Number of iterations we want to run through the algorithm
 
         // We want to predict h(x) = w1 * x + w0
+        double w2 = 0;
         double w1 = 0;
         double w0 = 0;
 
         // Learning rate
-        double alpha = 0.01;
+        double alpha = 0.0001;
 
         // Main Gradient Descent Function for Linear Regression
         for(int i = 0; i < epochs; i++) {
@@ -35,12 +36,13 @@ public class GradientDescent {
                 double x_j = data.get(0).get(j);
                 double y_j = data.get(1).get(j);
 
-                double prediction = (w1 * x_j) + w0;
+                double prediction = (w2 * x_j * x_j) + (w1 * x_j) + w0;
 
                 // cost += (y_j - h(x))^2
                 cost += (y_j - prediction) * (y_j - prediction);
 
                 // Update the parameters for our equation.
+                w2 += alpha * (y_j - prediction) * x_j * x_j;
                 w1 += alpha * (y_j - prediction) * x_j;
                 w0 += alpha * (y_j - prediction);
 
@@ -53,9 +55,10 @@ public class GradientDescent {
             // Our Hypothesis Function after the epoch
             // (these values are final because of how
             // functional programming works in Java).
+            final double w_2 = w2;
             final double w_1 = w1;
             final double w_0 = w0;
-            HypothesisFunction h_x = (x) -> (w_1 * x) + w_0;
+            HypothesisFunction h_x = (x) -> (w_2 * x * x) + (w_1 * x) + w_0;
             // ----------------------------------------------
             // Plotting prediction with current values of w
             plt.updatePlot(h_x);
@@ -64,7 +67,7 @@ public class GradientDescent {
         }
 
 
-        System.out.println("Final Equation: h(x) = (" + w1 + " * x) + " + w0);
+        System.out.println("Final Equation: h(x) = (" + w2 + " * x^2) + (" + w1 + " * x) + " + w0);
     }
 
     static void sleep(int ticks) {
