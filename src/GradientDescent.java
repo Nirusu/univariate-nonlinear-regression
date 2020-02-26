@@ -24,7 +24,7 @@ public class GradientDescent {
         double w0 = 0;
 
         // Learning rate
-        double alpha = 0.0001;
+        double alpha = 0.000000001;
 
         // Main Gradient Descent Function for Non-Linear Regression
         for(int i = 0; i < epochs; i++) {
