@@ -16,7 +16,7 @@ public class GradientDescent {
         // -------------------------------------------------
         // Gradient Descent
         // -------------------------------------------------
-        final int epochs = 100;  // Number of iterations we want to run through the algorithm
+        final int epochs = 400;  // Number of iterations we want to run through the algorithm
 
         // We want to predict h(x) = w1 * x + w0
         double w2 = 0;
@@ -24,7 +24,7 @@ public class GradientDescent {
         double w0 = 0;
 
         // Learning rate
-        double alpha = 0.000000001;
+        double alpha = 0.0000000001;
 
         // Main Gradient Descent Function for Non-Linear Regression
         for(int i = 0; i < epochs; i++) {
